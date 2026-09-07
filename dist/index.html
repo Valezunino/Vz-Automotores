@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VZ Automotores en Rojas. Vehículos seleccionados, financiación y toma de usados.">
+  <title>VZ Automotores | Rojas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="VZ Automotores, inicio">
+      <span class="brand-mark">VZ</span>
+      <span>VZ <b>AUTOMOTORES</b><small>ROJAS · BUENOS AIRES</small></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#stock">Stock</a><a href="#financiacion">Financiación</a><a href="#usado">Tu usado</a><a href="#contacto">Contacto</a>
+    </nav>
+    <button class="admin-link" data-open-admin>Panel demo</button>
+    <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <img src="assets/hero-showroom.png" alt="Sedán premium en un salón de exposición moderno">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <span class="eyebrow">TU PRÓXIMO AUTO ESTÁ EN ROJAS</span>
+        <h1>Elegí el camino.<br><em>Nosotros te acercamos.</em></h1>
+        <p>Vehículos seleccionados, financiación a tu medida y la posibilidad de entregar tu usado.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#stock">Explorar vehículos <span>→</span></a>
+          <a class="btn glass" href="https://wa.me/5492475402499?text=Hola%20VZ%20Automotores,%20quiero%20consultar%20por%20un%20vehículo" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+        </div>
+        <div class="hero-stats"><span><b>+30</b> vehículos</span><span><b>48 h</b> respuesta</span><span><b>100%</b> atención personal</span></div>
+      </div>
+      <div class="scroll-cue">DESCUBRÍ EL STOCK <span>↓</span></div>
+    </section>
+
+    <section class="quick-search" aria-label="Búsqueda rápida">
+      <div><label for="searchBrand">Marca</label><select id="searchBrand"><option value="all">Todas las marcas</option><option>Toyota</option><option>Volkswagen</option><option>Chevrolet</option><option>Ford</option></select></div>
+      <div><label for="searchType">Tipo</label><select id="searchType"><option value="all">Todos</option><option value="SUV">SUV</option><option value="Sedán">Sedán</option><option value="Hatchback">Hatchback</option></select></div>
+      <div><label for="searchPrice">Precio máximo</label><select id="searchPrice"><option value="999999999">Sin límite</option><option value="25000000">$25.000.000</option><option value="35000000">$35.000.000</option><option value="45000000">$45.000.000</option></select></div>
+      <button class="btn primary" id="searchBtn">Buscar disponibles</button>
+    </section>
+
+    <section class="section stock" id="stock">
+      <div class="section-head">
+        <div><span class="eyebrow">SELECCIÓN VZ</span><h2>Encontrá el que va con vos</h2></div>
+        <p>Unidades revisadas y listas para conocer. Elegí, compará y consultanos.</p>
+      </div>
+      <div class="filter-row" role="group" aria-label="Filtrar vehículos">
+        <button class="chip active" data-filter="all">Todos</button><button class="chip" data-filter="SUV">SUV</button><button class="chip" data-filter="Sedán">Sedán</button><button class="chip" data-filter="Hatchback">Hatchback</button>
+        <span id="resultCount">6 vehículos</span>
+      </div>
+      <div class="vehicle-grid" id="vehicleGrid"></div>
+      <div class="empty-state" id="emptyState" hidden>No encontramos vehículos con esos filtros. <button id="clearFilters">Ver todo el stock</button></div>
+      <p class="demo-note">* Vehículos, características y valores exhibidos únicamente con fines demostrativos.</p>
+    </section>
+
+    <section class="compare-bar" id="compareBar" aria-live="polite" hidden>
+      <div><b>Comparador</b><span id="compareNames">Seleccioná hasta 3 vehículos</span></div>
+      <button id="clearCompare">Limpiar</button><button class="btn primary" id="showCompare">Comparar ahora</button>
+    </section>
+
+    <section class="finance section" id="financiacion">
+      <div class="finance-copy">
+        <span class="eyebrow">FINANCIACIÓN SIMPLE</span>
+        <h2>Subite antes de lo que imaginás.</h2>
+        <p>Probá distintas opciones de anticipo y cuotas. Te mostramos una estimación clara para iniciar la consulta.</p>
+        <ul><li>Respuesta personalizada</li><li>Posibilidad de entregar tu usado</li><li>Planes adaptados a tu presupuesto</li></ul>
+      </div>
+      <div class="calculator">
+        <div class="calc-top"><span>SIMULADOR</span><span class="live-dot">Estimación online</span></div>
+        <label>Valor del vehículo <output id="vehicleValueOut">$32.500.000</output></label>
+        <input id="vehicleValue" type="range" min="15000000" max="60000000" step="500000" value="32500000">
+        <label>Anticipo <output id="depositOut">$12.000.000</output></label>
+        <input id="deposit" type="range" min="3000000" max="30000000" step="500000" value="12000000">
+        <label for="installments">Cantidad de cuotas</label>
+        <div class="term-group" id="installments"><button data-term="12">12</button><button data-term="24" class="active">24</button><button data-term="36">36</button><button data-term="48">48</button></div>
+        <div class="estimate"><span>Cuota estimada desde</span><strong id="monthlyOut">$1.281.250</strong><small>Valor orientativo. Sujeto a evaluación y condiciones vigentes.</small></div>
+        <a class="btn primary full" id="financeWhatsApp" href="#" target="_blank" rel="noopener">Solicitar propuesta</a>
+      </div>
+    </section>
+
+    <section class="trade section" id="usado">
+      <div class="trade-card">
+        <div><span class="eyebrow">TOMAMOS TU USADO</span><h2>Tu auto actual puede ser el primer paso.</h2><p>Completá los datos principales y recibí una tasación inicial sin compromiso.</p></div>
+        <form id="tradeForm">
+          <label>Marca y modelo<input required name="vehicle" placeholder="Ej.: Volkswagen Gol Trend"></label>
+          <div class="form-row"><label>Año<input required name="year" type="number" min="1990" max="2026" placeholder="2018"></label><label>Kilómetros<input required name="km" type="number" placeholder="85000"></label></div>
+          <label>Tu WhatsApp<input required name="phone" type="tel" placeholder="2475 000000"></label>
+          <button class="btn primary full" type="submit">Solicitar tasación</button>
+          <span class="form-status" id="tradeStatus"></span>
+        </form>
+      </div>
+    </section>
+
+    <section class="trust section">
+      <div><span class="eyebrow">UNA COMPRA CON RESPALDO</span><h2>Claridad en cada paso.</h2></div>
+      <div class="trust-grid">
+        <article><span>01</span><h3>Unidades seleccionadas</h3><p>Información completa y presentación profesional de cada vehículo.</p></article>
+        <article><span>02</span><h3>Atención personalizada</h3><p>Te acompañamos para encontrar la opción que mejor se adapte a vos.</p></article>
+        <article><span>03</span><h3>Gestión simple</h3><p>Consultá, financiá y coordiná una visita desde el mismo lugar.</p></article>
+      </div>
+    </section>
+
+    <section class="contact section" id="contacto">
+      <div><span class="eyebrow">ESTAMOS CERCA</span><h2>Vení a conocer tu próximo auto.</h2><p>Rojas, Provincia de Buenos Aires</p><a href="tel:+542475402499">2475-402499</a></div>
+      <div class="map-card"><span>VZ</span><b>Rojas</b><small>Buenos Aires</small><a href="https://www.google.com/maps/search/?api=1&query=Rojas%20Buenos%20Aires" target="_blank" rel="noopener">Cómo llegar →</a></div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#inicio"><span class="brand-mark">VZ</span><span>VZ <b>AUTOMOTORES</b></span></a><p>Vehículos que acompañan tu camino.</p><div><a href="#stock">Stock</a><a href="#financiacion">Financiación</a><a href="#usado">Tu usado</a></div><small>© 2026 VZ Automotores · Demo comercial</small></footer>
+  <a class="wa-float" href="https://wa.me/5492475402499?text=Hola%20VZ%20Automotores,%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">WA<span>¿Te ayudamos?</span></a>
+
+  <dialog id="vehicleDialog"><button class="dialog-close" aria-label="Cerrar">×</button><div id="vehicleDetail"></div></dialog>
+  <dialog id="compareDialog"><button class="dialog-close" aria-label="Cerrar">×</button><div id="compareContent"></div></dialog>
+  <dialog id="adminDialog"><button class="dialog-close" aria-label="Cerrar">×</button><div class="admin-demo"><span class="eyebrow">PANEL ADMINISTRADOR · DEMO</span><h2>Todo el negocio, en un vistazo.</h2><div class="admin-stats"><div><small>Stock publicado</small><b>30</b><em>+4 este mes</em></div><div><small>Consultas recibidas</small><b>86</b><em>+18%</em></div><div><small>Vehículo más visto</small><b>Corolla</b><em>342 visitas</em></div></div><div class="admin-list"><b>Inventario reciente</b><span>Toyota Corolla XEI <i>Disponible</i></span><span>Volkswagen Taos <i>Reservado</i></span><span>Chevrolet Tracker <i>Disponible</i></span></div><p>Desde este panel el dueño podrá cargar unidades, editar precios, cambiar estados y revisar consultas.</p></div></dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
