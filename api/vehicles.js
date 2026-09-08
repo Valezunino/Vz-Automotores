@@ -1,32 +1,29 @@
-import { ensureSchema, getDatabase } from '../lib/db.js';
+import { getAdminClient, isSupabaseConfigured } from '../lib/supabase.js';
+import { allowMethods, fail } from '../lib/http.js';
 
-const seed = [
-  [1,'Toyota','Corolla XEI',2023,'28.000 km','Nafta','Automático','Sedán',34500000,'Nuevo ingreso','toyota-corolla-xei.webp','Gris grafito','2.0L · 170 CV'],
-  [2,'Volkswagen','Taos Comfortline',2022,'41.500 km','Nafta','Automático','SUV',42900000,'Destacado','volkswagen-taos.webp','Blanco','1.4 TSI · 150 CV'],
-  [3,'Chevrolet','Tracker Premier',2024,'12.800 km','Nafta','Automático','SUV',39700000,'Oportunidad','chevrolet-tracker.webp','Blanco perlado','1.2 Turbo · 132 CV'],
-  [4,'Ford','Focus Titanium',2019,'67.000 km','Nafta','Automático','Hatchback',24800000,'Disponible','ford-focus.webp','Azul profundo','2.0L · 170 CV'],
-  [5,'Volkswagen','Golf Highline',2020,'53.400 km','Nafta','Automático','Hatchback',28600000,'Financiación','volkswagen-golf.webp','Azul metálico','1.4 TSI · 150 CV'],
-  [6,'Toyota','Corolla Cross XEI',2023,'31.200 km','Híbrido','Automático','SUV',46800000,'Próximo ingreso','toyota-corolla-cross.webp','Blanco','1.8 Hybrid · 122 CV']
+const fallback = [
+  { id:'demo-1',brand:'Toyota',model:'Corolla XEI',name:'Corolla XEI',year:2023,kilometers:28000,km:'28.000 km',fuel:'Nafta',transmission:'Automático',gear:'Automático',category:'Sedán',type:'Sedán',price:34500000,status:'Disponible',images:['assets/toyota-corolla-xei.webp'],image:'assets/toyota-corolla-xei.webp',color:'Gris grafito',engine:'2.0L · 170 CV',featured:true },
+  { id:'demo-2',brand:'Volkswagen',model:'Taos Comfortline',name:'Taos Comfortline',year:2022,kilometers:41500,km:'41.500 km',fuel:'Nafta',transmission:'Automático',gear:'Automático',category:'SUV',type:'SUV',price:42900000,status:'Reservado',images:['assets/volkswagen-taos.webp'],image:'assets/volkswagen-taos.webp',color:'Negro',engine:'1.4 TSI · 150 CV',featured:true },
+  { id:'demo-3',brand:'Chevrolet',model:'Tracker Premier',name:'Tracker Premier',year:2024,kilometers:12800,km:'12.800 km',fuel:'Nafta',transmission:'Automático',gear:'Automático',category:'SUV',type:'SUV',price:39700000,status:'Disponible',images:['assets/chevrolet-tracker.webp'],image:'assets/chevrolet-tracker.webp',color:'Rojo',engine:'1.2 Turbo · 132 CV',featured:true },
+  { id:'demo-4',brand:'Ford',model:'Focus Titanium',name:'Focus Titanium',year:2019,kilometers:67000,km:'67.000 km',fuel:'Nafta',transmission:'Automático',gear:'Automático',category:'Hatchback',type:'Hatchback',price:24800000,status:'Disponible',images:['assets/ford-focus.webp'],image:'assets/ford-focus.webp',color:'Blanco',engine:'2.0L · 170 CV',featured:false },
+  { id:'demo-5',brand:'Volkswagen',model:'Golf Highline',name:'Golf Highline',year:2020,kilometers:53400,km:'53.400 km',fuel:'Nafta',transmission:'Automático',gear:'Automático',category:'Hatchback',type:'Hatchback',price:28600000,status:'Vendido',images:['assets/volkswagen-golf.webp'],image:'assets/volkswagen-golf.webp',color:'Blanco',engine:'1.4 TSI · 150 CV',featured:false },
+  { id:'demo-6',brand:'Toyota',model:'Corolla Cross XEI',name:'Corolla Cross XEI',year:2023,kilometers:31200,km:'31.200 km',fuel:'Híbrido',transmission:'Automático',gear:'Automático',category:'SUV',type:'SUV',price:46800000,status:'Próximo ingreso',images:['assets/toyota-corolla-cross.webp'],image:'assets/toyota-corolla-cross.webp',color:'Blanco',engine:'1.8 Hybrid · 122 CV',featured:false }
 ];
 
-export default async function handler(req, res) {
-  if (req.method !== 'GET') return res.status(405).json({ error: 'Método no permitido' });
+function present(vehicle) {
+  const image = vehicle.images?.[0] || 'assets/toyota-corolla-xei.webp';
+  return { ...vehicle, name: vehicle.model, km: `${Number(vehicle.kilometers || 0).toLocaleString('es-AR')} km`, gear: vehicle.transmission, type: vehicle.category, image };
+}
 
+export default async function handler(req, res) {
+  if (!allowMethods(req, res, ['GET'])) return;
+  if (!isSupabaseConfigured()) return res.status(200).json({ vehicles: fallback, mode: 'demo' });
   try {
-    const sql = getDatabase();
-    await ensureSchema(sql);
-    const existing = await sql`SELECT COUNT(*)::int AS total FROM vehicles`;
-    if (existing[0].total === 0) {
-      for (const v of seed) {
-        await sql`INSERT INTO vehicles (id,brand,name,year,km,fuel,gear,type,price,status,image,color,engine)
-          VALUES (${v[0]},${v[1]},${v[2]},${v[3]},${v[4]},${v[5]},${v[6]},${v[7]},${v[8]},${v[9]},${v[10]},${v[11]},${v[12]})
-          ON CONFLICT (id) DO NOTHING`;
-      }
-    }
-    const vehicles = await sql`SELECT id,brand,name,year,km,fuel,gear,type,price::int,status,image,color,engine FROM vehicles ORDER BY id`;
-    return res.status(200).json({ vehicles, database: 'connected' });
-  } catch (error) {
-    const code = error.message === 'DATABASE_NOT_CONFIGURED' ? 'not_configured' : 'unavailable';
-    return res.status(503).json({ error: code });
-  }
+    const supabase = getAdminClient();
+    let query = supabase.from('vehicles').select('*').eq('published', true).order('featured', { ascending: false }).order('created_at', { ascending: false });
+    if (req.query?.status) query = query.eq('status', req.query.status);
+    const { data, error } = await query;
+    if (error) throw error;
+    return res.status(200).json({ vehicles: data.map(present), mode: 'live' });
+  } catch (error) { return fail(res, error, 'vehicles:get'); }
 }
