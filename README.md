@@ -5,7 +5,7 @@ Demo comercial de una página web para una concesionaria de automotores en Rojas
 ## Funciones
 
 - Catálogo de vehículos con filtros
-- Favoritos y comparador
+- Favoritos
 - Fichas técnicas
 - Simulador de financiación
 - Formulario de tasación de usados
