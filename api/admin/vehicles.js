@@ -9,6 +9,12 @@ export default async function handler(req,res) {
   try {
     const auth=await requireAdmin(req,res); if(!auth)return;
     const { supabase }=auth;
+    if (req.method !== 'DELETE') {
+      const value = record(req.body || {});
+      if (!value.brand || !value.model || !Number.isInteger(value.year) || value.year < 1950 || value.year > 2100 || !Number.isSafeInteger(value.kilometers) || value.kilometers < 0 || !Number.isSafeInteger(value.price) || value.price < 0 || !['Disponible','Reservado','Vendido','Próximo ingreso'].includes(value.status)) return res.status(400).json({error:'Revisá marca, modelo, año, kilómetros, precio y estado.'});
+      if (value.images.some(url => typeof url !== 'string' || !(/^https:\/\//.test(url) || /^\/?assets\/[\w.-]+$/.test(url)))) return res.status(400).json({error:'Una foto tiene una dirección inválida.'});
+      if (value.equipment.some(item => typeof item !== 'string' || item.length > 200)) return res.status(400).json({error:'Equipamiento inválido.'});
+    }
     if(req.method==='POST'){
       const value=record(req.body||{});
       if(!value.brand||!value.model||!value.year)return res.status(400).json({error:'Completá marca, modelo y año.'});
