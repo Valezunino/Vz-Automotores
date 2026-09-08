@@ -21,7 +21,7 @@
       <button class="nav-item" data-page="settings"><span>⚙</span>Configuración</button>
     </nav>
     <div class="sidebar-help"><b>¿Necesitás ayuda?</b><small>Soporte del sistema</small><button data-toast="Centro de ayuda abierto">Contactar soporte</button></div>
-    <div class="profile"><span>VZ</span><div><b>Valentín Zunino</b><small>Administrador</small></div><button aria-label="Opciones">⋮</button></div>
+    <div class="profile"><span>VZ</span><div><b>Valentín Zunino</b><small>Administrador</small></div><button aria-label="Opciones" data-toast="Menú de usuario abierto">⋮</button></div>
   </aside>
 
   <main class="main">
@@ -52,7 +52,7 @@
           </div>
         </article>
         <article class="panel status-panel">
-          <div class="panel-title"><div><h3>Estado del inventario</h3><p>30 unidades totales</p></div><button class="more">•••</button></div>
+          <div class="panel-title"><div><h3>Estado del inventario</h3><p>30 unidades totales</p></div><button class="more" data-toast="Informe de inventario abierto">•••</button></div>
           <div class="donut"><div><strong>30</strong><small>unidades</small></div></div>
           <div class="status-list"><span><i class="available"></i>Disponibles <b>21</b></span><span><i class="reserved"></i>Reservados <b>4</b></span><span><i class="incoming"></i>Próximos <b>3</b></span><span><i class="sold"></i>Vendidos <b>2</b></span></div>
         </article>
@@ -65,14 +65,14 @@
 
     <section class="page" id="vehicles">
       <div class="section-title"><div><span>INVENTARIO</span><h2>Gestión de vehículos</h2><p>Publicá, editá y administrá todo el stock desde un solo lugar.</p></div><button class="primary" data-new-car>＋ Cargar vehículo</button></div>
-      <div class="toolbar"><label>⌕ <input id="vehicleSearch" placeholder="Buscar por marca, modelo o año"></label><select id="vehicleStatus"><option value="all">Todos los estados</option><option>Disponible</option><option>Reservado</option><option>Próximo ingreso</option><option>Vendido</option></select><select><option>Más recientes</option><option>Mayor precio</option><option>Más vistos</option></select><button class="outline" data-toast="Filtros avanzados listos">☷ Filtros</button></div>
-      <div class="table-card"><table><thead><tr><th>Vehículo</th><th>Precio</th><th>Datos</th><th>Estado</th><th>Visitas</th><th>Consultas</th><th></th></tr></thead><tbody id="vehicleTable"></tbody></table><div class="table-footer"><span>Mostrando 6 de 30 vehículos</span><div><button disabled>←</button><button class="active">1</button><button>2</button><button>3</button><button>4</button><button>5</button><button>→</button></div></div></div>
+      <div class="toolbar"><label>⌕ <input id="vehicleSearch" placeholder="Buscar por marca, modelo o año"></label><select id="vehicleStatus"><option value="all">Todos los estados</option><option>Disponible</option><option>Reservado</option><option>Próximo ingreso</option><option>Vendido</option></select><select id="vehicleSort"><option value="recent">Más recientes</option><option value="price">Mayor precio</option><option value="views">Más vistos</option></select><button class="outline" data-toast="Filtros avanzados listos">☷ Filtros</button></div>
+      <div class="table-card"><table><thead><tr><th>Vehículo</th><th>Precio</th><th>Datos</th><th>Estado</th><th>Visitas</th><th>Consultas</th><th></th></tr></thead><tbody id="vehicleTable"></tbody></table><div class="table-footer"><span>Mostrando 6 de 30 vehículos</span><div class="pagination"><button disabled>←</button><button class="active" data-page-num="1">1</button><button data-page-num="2">2</button><button data-page-num="3">3</button><button data-page-num="4">4</button><button data-page-num="5">5</button><button data-next-page>→</button></div></div></div>
     </section>
 
     <section class="page" id="leads">
       <div class="section-title"><div><span>CLIENTES</span><h2>Consultas recibidas</h2><p>Centralizá los contactos del sitio web y hacé seguimiento comercial.</p></div><button class="outline" data-toast="Listado exportado correctamente">⇩ Exportar listado</button></div>
       <div class="mini-kpis"><article><small>Sin responder</small><strong>8</strong><i class="danger">Requieren atención</i></article><article><small>En seguimiento</small><strong>17</strong><i>Contactados</i></article><article><small>Visitas coordinadas</small><strong>6</strong><i class="success">Esta semana</i></article><article><small>Tasa de conversión</small><strong>14%</strong><i class="success">+2,4%</i></article></div>
-      <div class="toolbar"><label>⌕ <input id="leadSearch" placeholder="Buscar cliente o vehículo"></label><select><option>Todos los estados</option><option>Nueva</option><option>Contactado</option><option>Visita agendada</option></select><select><option>Todos los canales</option><option>WhatsApp</option><option>Formulario web</option><option>Financiación</option></select></div>
+      <div class="toolbar"><label>⌕ <input id="leadSearch" placeholder="Buscar cliente o vehículo"></label><select id="leadStatus"><option value="all">Todos los estados</option><option>Nueva</option><option>Contactado</option><option>Visita agendada</option></select><select id="leadChannel"><option value="all">Todos los canales</option><option>WhatsApp</option><option>Formulario web</option><option>Financiación</option></select></div>
       <div class="table-card"><table><thead><tr><th>Cliente</th><th>Vehículo consultado</th><th>Canal</th><th>Fecha</th><th>Estado</th><th>Responsable</th><th></th></tr></thead><tbody id="leadTable"></tbody></table></div>
     </section>
 

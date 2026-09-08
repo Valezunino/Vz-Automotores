@@ -1,10 +1,10 @@
 let cars=[
- {id:1,brand:'Toyota',name:'Corolla XEI',year:2023,km:'28.000 km',fuel:'Nafta',gear:'Automático',type:'Sedán',price:34500000,status:'Nuevo ingreso',image:'assets/hero-showroom.webp',color:'Gris grafito',engine:'2.0L · 170 CV'},
- {id:2,brand:'Volkswagen',name:'Taos Comfortline',year:2022,km:'41.500 km',fuel:'Nafta',gear:'Automático',type:'SUV',price:42900000,status:'Destacado',image:'assets/suv-white.webp',color:'Blanco',engine:'1.4 TSI · 150 CV'},
- {id:3,brand:'Chevrolet',name:'Tracker Premier',year:2024,km:'12.800 km',fuel:'Nafta',gear:'Automático',type:'SUV',price:39700000,status:'Oportunidad',image:'assets/suv-white.webp',color:'Blanco perlado',engine:'1.2 Turbo · 132 CV'},
- {id:4,brand:'Ford',name:'Focus Titanium',year:2019,km:'67.000 km',fuel:'Nafta',gear:'Automático',type:'Hatchback',price:24800000,status:'Disponible',image:'assets/hatch-blue.webp',color:'Azul profundo',engine:'2.0L · 170 CV'},
- {id:5,brand:'Volkswagen',name:'Golf Highline',year:2020,km:'53.400 km',fuel:'Nafta',gear:'Automático',type:'Hatchback',price:28600000,status:'Financiación',image:'assets/hatch-blue.webp',color:'Azul metálico',engine:'1.4 TSI · 150 CV'},
- {id:6,brand:'Toyota',name:'Corolla Cross XEI',year:2023,km:'31.200 km',fuel:'Híbrido',gear:'Automático',type:'SUV',price:46800000,status:'Próximo ingreso',image:'assets/suv-white.webp',color:'Blanco',engine:'1.8 Hybrid · 122 CV'}
+ {id:1,brand:'Toyota',name:'Corolla XEI',year:2023,km:'28.000 km',fuel:'Nafta',gear:'Automático',type:'Sedán',price:34500000,status:'Nuevo ingreso',image:'assets/toyota-corolla-xei.webp',color:'Gris grafito',engine:'2.0L · 170 CV'},
+ {id:2,brand:'Volkswagen',name:'Taos Comfortline',year:2022,km:'41.500 km',fuel:'Nafta',gear:'Automático',type:'SUV',price:42900000,status:'Destacado',image:'assets/volkswagen-taos.webp',color:'Blanco',engine:'1.4 TSI · 150 CV'},
+ {id:3,brand:'Chevrolet',name:'Tracker Premier',year:2024,km:'12.800 km',fuel:'Nafta',gear:'Automático',type:'SUV',price:39700000,status:'Oportunidad',image:'assets/chevrolet-tracker.webp',color:'Blanco perlado',engine:'1.2 Turbo · 132 CV'},
+ {id:4,brand:'Ford',name:'Focus Titanium',year:2019,km:'67.000 km',fuel:'Nafta',gear:'Automático',type:'Hatchback',price:24800000,status:'Disponible',image:'assets/ford-focus.webp',color:'Azul profundo',engine:'2.0L · 170 CV'},
+ {id:5,brand:'Volkswagen',name:'Golf Highline',year:2020,km:'53.400 km',fuel:'Nafta',gear:'Automático',type:'Hatchback',price:28600000,status:'Financiación',image:'assets/volkswagen-golf.webp',color:'Azul metálico',engine:'1.4 TSI · 150 CV'},
+ {id:6,brand:'Toyota',name:'Corolla Cross XEI',year:2023,km:'31.200 km',fuel:'Híbrido',gear:'Automático',type:'SUV',price:46800000,status:'Próximo ingreso',image:'assets/toyota-corolla-cross.webp',color:'Blanco',engine:'1.8 Hybrid · 122 CV'}
 ];
 const money=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(n);
 const grid=document.querySelector('#vehicleGrid'),count=document.querySelector('#resultCount'),empty=document.querySelector('#emptyState');
