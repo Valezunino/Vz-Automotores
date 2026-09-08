@@ -1,10 +1,10 @@
 const vehicles=[
- {id:1,brand:'Toyota',model:'Corolla XEI',year:2023,km:'28.000 km',price:34500000,status:'Disponible',views:342,leads:18,image:'assets/hero-showroom.png'},
- {id:2,brand:'Volkswagen',model:'Taos Comfortline',year:2022,km:'41.500 km',price:42900000,status:'Reservado',views:298,leads:14,image:'assets/suv-white.png'},
- {id:3,brand:'Chevrolet',model:'Tracker Premier',year:2024,km:'12.800 km',price:39700000,status:'Disponible',views:261,leads:11,image:'assets/suv-white.png'},
- {id:4,brand:'Ford',model:'Focus Titanium',year:2019,km:'67.000 km',price:24800000,status:'Disponible',views:189,leads:8,image:'assets/hatch-blue.png'},
- {id:5,brand:'Volkswagen',model:'Golf Highline',year:2020,km:'53.400 km',price:28600000,status:'Vendido',views:176,leads:9,image:'assets/hatch-blue.png'},
- {id:6,brand:'Toyota',model:'Corolla Cross XEI',year:2023,km:'31.200 km',price:46800000,status:'Próximo ingreso',views:151,leads:7,image:'assets/suv-white.png'}
+ {id:1,brand:'Toyota',model:'Corolla XEI',year:2023,km:'28.000 km',price:34500000,status:'Disponible',views:342,leads:18,image:'assets/hero-showroom.webp'},
+ {id:2,brand:'Volkswagen',model:'Taos Comfortline',year:2022,km:'41.500 km',price:42900000,status:'Reservado',views:298,leads:14,image:'assets/suv-white.webp'},
+ {id:3,brand:'Chevrolet',model:'Tracker Premier',year:2024,km:'12.800 km',price:39700000,status:'Disponible',views:261,leads:11,image:'assets/suv-white.webp'},
+ {id:4,brand:'Ford',model:'Focus Titanium',year:2019,km:'67.000 km',price:24800000,status:'Disponible',views:189,leads:8,image:'assets/hatch-blue.webp'},
+ {id:5,brand:'Volkswagen',model:'Golf Highline',year:2020,km:'53.400 km',price:28600000,status:'Vendido',views:176,leads:9,image:'assets/hatch-blue.webp'},
+ {id:6,brand:'Toyota',model:'Corolla Cross XEI',year:2023,km:'31.200 km',price:46800000,status:'Próximo ingreso',views:151,leads:7,image:'assets/suv-white.webp'}
 ];
 const leads=[
  {name:'Martín Rodríguez',initials:'MR',car:'Toyota Corolla XEI 2023',channel:'WhatsApp',date:'Hoy, 10:42',status:'Nueva',owner:'Sin asignar',phone:'2475 61-8092'},

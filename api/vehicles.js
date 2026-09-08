@@ -1,12 +1,12 @@
 import { ensureSchema, getDatabase } from '../lib/db.js';
 
 const seed = [
-  [1,'Toyota','Corolla XEI',2023,'28.000 km','Nafta','Automático','Sedán',34500000,'Nuevo ingreso','hero-showroom.png','Gris grafito','2.0L · 170 CV'],
-  [2,'Volkswagen','Taos Comfortline',2022,'41.500 km','Nafta','Automático','SUV',42900000,'Destacado','suv-white.png','Blanco','1.4 TSI · 150 CV'],
-  [3,'Chevrolet','Tracker Premier',2024,'12.800 km','Nafta','Automático','SUV',39700000,'Oportunidad','suv-white.png','Blanco perlado','1.2 Turbo · 132 CV'],
-  [4,'Ford','Focus Titanium',2019,'67.000 km','Nafta','Automático','Hatchback',24800000,'Disponible','hatch-blue.png','Azul profundo','2.0L · 170 CV'],
-  [5,'Volkswagen','Golf Highline',2020,'53.400 km','Nafta','Automático','Hatchback',28600000,'Financiación','hatch-blue.png','Azul metálico','1.4 TSI · 150 CV'],
-  [6,'Toyota','Corolla Cross XEI',2023,'31.200 km','Híbrido','Automático','SUV',46800000,'Próximo ingreso','suv-white.png','Blanco','1.8 Hybrid · 122 CV']
+  [1,'Toyota','Corolla XEI',2023,'28.000 km','Nafta','Automático','Sedán',34500000,'Nuevo ingreso','hero-showroom.webp','Gris grafito','2.0L · 170 CV'],
+  [2,'Volkswagen','Taos Comfortline',2022,'41.500 km','Nafta','Automático','SUV',42900000,'Destacado','suv-white.webp','Blanco','1.4 TSI · 150 CV'],
+  [3,'Chevrolet','Tracker Premier',2024,'12.800 km','Nafta','Automático','SUV',39700000,'Oportunidad','suv-white.webp','Blanco perlado','1.2 Turbo · 132 CV'],
+  [4,'Ford','Focus Titanium',2019,'67.000 km','Nafta','Automático','Hatchback',24800000,'Disponible','hatch-blue.webp','Azul profundo','2.0L · 170 CV'],
+  [5,'Volkswagen','Golf Highline',2020,'53.400 km','Nafta','Automático','Hatchback',28600000,'Financiación','hatch-blue.webp','Azul metálico','1.4 TSI · 150 CV'],
+  [6,'Toyota','Corolla Cross XEI',2023,'31.200 km','Híbrido','Automático','SUV',46800000,'Próximo ingreso','suv-white.webp','Blanco','1.8 Hybrid · 122 CV']
 ];
 
 export default async function handler(req, res) {
